@@ -24,14 +24,11 @@ public class SMSNotification extends BroadcastReceiver {
     public static final String TAG = "SmsAuth";
     public static Timestamp timeNow;
     public static long timeNowL;
-    public static long msgTimeL;
+ ;
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        //IntentFilter filter = new IntentFilter(SMS_RECEIVED);
-        //BroadcastReceiver receiver = new SMSNotification();
-        //registerReceiver(receiver, filter);
 
         Toast.makeText(context, "SmsAuth перехватило смс", Toast.LENGTH_LONG).show();
 
@@ -50,7 +47,9 @@ public class SMSNotification extends BroadcastReceiver {
                 msgTimeS = Long.toString(msgTimeL);
                 timeNow = new java.sql.Timestamp(System.currentTimeMillis());
                 timeNowL = (new java.sql.Timestamp(System.currentTimeMillis())).getTime();
-                if (msgTxt.toLowerCase().startsWith(context.getString(R.string.AUTH_STR)) && (timeNowL > msgTimeL)) {
+
+                //if (msgTxt.toLowerCase().startsWith(context.getString(R.string.AUTH_STR)) && (timeNowL > msgTimeL)) {
+                if (msgTxt.toLowerCase().startsWith(context.getString(R.string.AUTH_STR))) {
                     Toast.makeText(context, "AUTH OK!", Toast.LENGTH_LONG).show();
                     Log.d(TAG, "003--" + msgTxt.toLowerCase() + " : " + context.getString(R.string.AUTH_STR));
 
@@ -62,6 +61,9 @@ public class SMSNotification extends BroadcastReceiver {
             str = "Tel=" + msgTel + ", Text=" + msgTxt + " msgTimeStamp=" + msgTimeS + " : " + timeNowL;
             Log.d(TAG, "002--" + str);
             Toast.makeText(context, str, Toast.LENGTH_LONG).show();
+
+
+
 
             if (msgTxt.toLowerCase().startsWith(AUTH_STR)) {
                 str = msgTxt.substring(AUTH_STR.length());

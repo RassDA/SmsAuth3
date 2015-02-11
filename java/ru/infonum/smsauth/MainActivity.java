@@ -1,5 +1,7 @@
 package ru.infonum.smsauth;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.SmsManager;
@@ -21,15 +23,23 @@ public class MainActivity extends ActionBarActivity {
     Button sendSMSBtn;
     EditText editTextTel;
     EditText editTextTxt;
-    //final String TESTTEL = "+79119148047";
+    final String TESTTEL = "+79119148047";
     public static Timestamp sendingTime;
     public static String sendingTimeS;
     public static long sendingTimeL;
+    public static String msgTxt ="";
+    public static String msgTel = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //msgTel = editTextTel.getText().toString();
+        //msgTel = TESTTEL;
+        //msgTxt = this.getString(R.string.AUTH_STR) + " Отправьте эту смс на свой номер";
+        //startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts(msgTxt, msgTel, null)));
 
         sendSMSBtn = (Button) findViewById(R.id.btnSendSMS);
         editTextTel = (EditText) findViewById(R.id.editTextPhoneNo);
@@ -37,6 +47,7 @@ public class MainActivity extends ActionBarActivity {
         editTextTxt = (EditText) findViewById(R.id.editTextSMS);
         //final Random random = new Random();
         editTextTxt.setText(this.getString(R.string.AUTH_STR));
+        //startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts(msgTxt, msgTel, null)));
 
         //smsMessageET.setText(String.valueOf(Math.abs(random.nextInt(9999))));
 
@@ -45,12 +56,14 @@ public class MainActivity extends ActionBarActivity {
                 sendSMS();
             }
         });
+
     }
 
     protected void sendSMS() {
-        String msgTel = editTextTel.getText().toString();
-        String msgTxt = editTextTxt.getText().toString();
+        msgTel = editTextTel.getText().toString();
+        msgTxt = editTextTxt.getText().toString();
         try {
+
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(msgTel, null, msgTxt, null, null);
             Toast.makeText(getApplicationContext(), "SmsAuth: Смс отправлено.",
@@ -65,6 +78,29 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    protected void sendSmsBuiltin() {
+        msgTel = editTextTel.getText().toString();
+        msgTxt = editTextTxt.getText().toString() + " Отправьте эту смс на свой номер";
+        //Intent it = new Intent(Intent.ACTION_VIEW);
+
+
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts(msgTxt, msgTel, null)));
+/*
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(msgTel, null, msgTxt, null, null);
+            Toast.makeText(getApplicationContext(), "SmsAuth: Смс отправлено.",
+                    Toast.LENGTH_LONG).show();
+            sendingTime = new java.sql.Timestamp(System.currentTimeMillis());
+            sendingTimeL = sendingTime.getTime();
+            Log.d(TAG, "001-- Time=" + new java.sql.Timestamp(System.currentTimeMillis()).toString());
+*/
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "SmsAuth: Сбой в отправке смс. Tel= " + msgTel + "Txt=" + msgTxt,
+                    Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -2,12 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.infonum.smsauth" >
 
-    <uses-permission android:name="android.permission.SEND_SMS">
-    </uses-permission>
-    <uses-permission android:name="android.permission.RECEIVE_SMS">
-    </uses-permission>
-    <uses-permission android:name="android.permission.READ_SMS">
-    </uses-permission>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -17,11 +15,18 @@
 
         <receiver android:enabled="true" android:name=".SMSNotification">
             <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED">
-                </action></intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+                <action android:name="android.provider.Telephony.SMS_SENT"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".SMSUtils"
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_SENT">
-                </action></intent-filter>
+                <action android:name="SMS_SENT"/>
+                <action android:name="SMS_DELIVERED"/>
+            </intent-filter>
         </receiver>
 
         <activity
