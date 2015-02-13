@@ -48,7 +48,8 @@ public class SMSNotification extends BroadcastReceiver {
                 timeNow = new java.sql.Timestamp(System.currentTimeMillis());
                 timeNowL = (new java.sql.Timestamp(System.currentTimeMillis())).getTime();
 
-                //if (msgTxt.toLowerCase().startsWith(context.getString(R.string.AUTH_STR)) && (timeNowL > msgTimeL)) {
+                //if (msgTxt.toLowerCase().startsWith(context.getString(R.string.AUTH_STR))
+                //        && ((timeNowL - msgTimeL) > 0)) {
                 if (msgTxt.toLowerCase().startsWith(context.getString(R.string.AUTH_STR))) {
                     Toast.makeText(context, "AUTH OK!", Toast.LENGTH_LONG).show();
                     Log.d(TAG, "003--" + msgTxt.toLowerCase() + " : " + context.getString(R.string.AUTH_STR));
@@ -58,18 +59,10 @@ public class SMSNotification extends BroadcastReceiver {
                     Log.d(TAG, "004--" + msgTxt.toLowerCase() + " : " + context.getString(R.string.AUTH_STR));
                 }
             }
-            str = "Tel=" + msgTel + ", Text=" + msgTxt + " msgTimeStamp=" + msgTimeS + " : " + timeNowL;
+            str = "Tel=" + msgTel + ", Text=" + msgTxt + " msgTimeStamp=" + Long.toString(timeNowL - msgTimeL);
             Log.d(TAG, "002--" + str);
             Toast.makeText(context, str, Toast.LENGTH_LONG).show();
 
-
-
-
-            if (msgTxt.toLowerCase().startsWith(AUTH_STR)) {
-                str = msgTxt.substring(AUTH_STR.length());
-                Toast.makeText(context, str, Toast.LENGTH_LONG).show();
-                //sms.sendTextMessage(to, null, out, null, null);
-            }
         }
     }
 }

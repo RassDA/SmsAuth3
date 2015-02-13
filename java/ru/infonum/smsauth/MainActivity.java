@@ -1,7 +1,6 @@
 package ru.infonum.smsauth;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.SmsManager;
@@ -53,7 +52,11 @@ public class MainActivity extends ActionBarActivity {
 
         sendSMSBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                sendSMS();
+                if (editTextTel.getText().toString().equals("+")) {
+                    sendSmsBI();
+                } else {
+                    sendSMS();
+                }
             }
         });
 
@@ -78,15 +81,17 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    protected void sendSmsBuiltin() {
+    protected void sendSmsBI() {
         msgTel = editTextTel.getText().toString();
         msgTxt = editTextTxt.getText().toString() + " Отправьте эту смс на свой номер";
-        //Intent it = new Intent(Intent.ACTION_VIEW);
-
-
+        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+        sendIntent.putExtra("sms_body", "http://infonum.ru/auth");
+        sendIntent.setType("vnd.android-dir/mms-sms");
+        startActivity(sendIntent);
+/*
         try {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts(msgTxt, msgTel, null)));
-/*
+
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(msgTel, null, msgTxt, null, null);
             Toast.makeText(getApplicationContext(), "SmsAuth: Смс отправлено.",
@@ -94,13 +99,15 @@ public class MainActivity extends ActionBarActivity {
             sendingTime = new java.sql.Timestamp(System.currentTimeMillis());
             sendingTimeL = sendingTime.getTime();
             Log.d(TAG, "001-- Time=" + new java.sql.Timestamp(System.currentTimeMillis()).toString());
-*/
+
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "SmsAuth: Сбой в отправке смс. Tel= " + msgTel + "Txt=" + msgTxt,
                     Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
+*/
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

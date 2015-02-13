@@ -7,7 +7,7 @@
     <string name="sms_not_receive">SmsAuth--смс не принято</string>
     <string name="sms_receive">SmsAuth--смс принято</string>
     <string name="sms_not_send_no_radio">--смс не отправлено - нет связи</string>
-    <string name="sms_not_send">--смс не отправлено</string>
+    <string name="sms_not_send">--смс не отправлено - параметры не заполнены</string>
     <string name="sms_not_send_no_service">--смс не отправлено - отказ в обслуживании</string>
     <string name="sms_send">--смс отправлено</string>
 </resources>
