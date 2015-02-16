@@ -3,7 +3,10 @@
 
     <string name="action_settings">Настройки</string>
     <string name="AUTH_STR">http://infonum.ru/smsauth</string>
-    <string name="cannot_send_sms">\"SmsAuth--Невозможно отправить смс\"</string>
+
+    <string name="TESTTEL">+79119148047</string>
+
+    <string name="cannot_send_sms">SmsAuth--Невозможно отправить смс</string>
     <string name="sms_not_receive">SmsAuth--смс не принято</string>
     <string name="sms_receive">SmsAuth--смс принято</string>
     <string name="sms_not_send_no_radio">--смс не отправлено - нет связи</string>

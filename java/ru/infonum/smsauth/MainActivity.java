@@ -41,13 +41,15 @@ public class MainActivity extends ActionBarActivity {
         //startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts(msgTxt, msgTel, null)));
 
         sendSMSBtn = (Button) findViewById(R.id.btnSendSMS);
+
         editTextTel = (EditText) findViewById(R.id.editTextPhoneNo);
-        editTextTel.setText(TESTTEL);
+        editTextTel.setText(getString(R.string.TESTTEL) + "Введите сюда свой номер");
+
         editTextTxt = (EditText) findViewById(R.id.editTextSMS);
         //final Random random = new Random();
-        editTextTxt.setText(this.getString(R.string.AUTH_STR));
-        //startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts(msgTxt, msgTel, null)));
+        editTextTxt.setText(getString(R.string.AUTH_STR));
 
+        //startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts(msgTxt, msgTel, null)));
         //smsMessageET.setText(String.valueOf(Math.abs(random.nextInt(9999))));
 
         sendSMSBtn.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +68,6 @@ public class MainActivity extends ActionBarActivity {
         msgTel = editTextTel.getText().toString();
         msgTxt = editTextTxt.getText().toString();
         try {
-
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(msgTel, null, msgTxt, null, null);
             Toast.makeText(getApplicationContext(), "SmsAuth: Смс отправлено.",
@@ -81,11 +82,11 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    protected void sendSmsBI() {
+    protected void sendSmsBI() { //Send Sms by Built-in sms manager
         msgTel = editTextTel.getText().toString();
         msgTxt = editTextTxt.getText().toString() + " Отправьте эту смс на свой номер";
         Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-        sendIntent.putExtra("sms_body", "http://infonum.ru/auth");
+        sendIntent.putExtra("sms_body", getString(R.string.AUTH_STR));
         sendIntent.setType("vnd.android-dir/mms-sms");
         startActivity(sendIntent);
 /*
