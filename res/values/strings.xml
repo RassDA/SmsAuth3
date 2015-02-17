@@ -3,6 +3,7 @@
 
     <string name="action_settings">Настройки</string>
     <string name="AUTH_STR">http://infonum.ru/smsauth</string>
+    <string name="AUTH_STR_RAND">http://infonum.ru/smsauth?rand=</string>
 
     <string name="TESTTEL">+79119148047</string>
 
@@ -13,4 +14,5 @@
     <string name="sms_not_send">--смс не отправлено - параметры не заполнены</string>
     <string name="sms_not_send_no_service">--смс не отправлено - отказ в обслуживании</string>
     <string name="sms_send">--смс отправлено</string>
+    <string name="AUTH_RAND">auth_rand</string>
 </resources>

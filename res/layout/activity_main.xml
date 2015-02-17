@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Введите свой номер"
+        android:text="Аутентификация\nВведите СВОЙ номер,\nи отправьте смс себе"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -22,12 +22,16 @@
         android:id="@+id/editTextPhoneNo"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:text="89119148047" />
+        android:text="+79119148047"
+        android:textStyle="bold"
+        android:phoneNumber="true"
+        android:hint="89119148047"
+        android:autoText="false" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Текст смс (не изменяемый)"
+        android:text="Текст смс (не изменяемый) "
         android:id="@+id/textView2"
         android:layout_below="@+id/editTextPhoneNo"
         android:layout_centerHorizontal="true" />
@@ -40,15 +44,36 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:inputType="textShortMessage" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Отправить смс себе"
-        android:id="@+id/btnSendSMS"
+        android:text="Отправить смс\n себе\n"
+        android:id="@+id/btnSendSms"
         android:layout_below="@+id/editTextSMS"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="58dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Отправить стандартным\nсмс-приложением"
+        android:id="@+id/btnBI"
+        android:layout_below="@+id/editTextSMS"
+        android:layout_toRightOf="@+id/btnSendSms"
+        android:layout_toEndOf="@+id/btnSendSms" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/btnBI"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editTextSMS"
+        android:layout_alignEnd="@+id/editTextSMS"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>
