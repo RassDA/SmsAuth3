@@ -15,6 +15,16 @@ import java.sql.Timestamp;
  * Created by d1i on 09.02.15.
  */
 
+/*
+TODO Передавать результат аутентификации еще каким-либо способом, кроме вывода сообщений в лог и во всплывающие окна.
+TODO - использовать время для оценки возможности аутентификации - текущее время + время смс.
+TODO - разобраться с записью смс в стандартное хранилище. Когда смс отправляет приложение - смс не сохраняется в отправленных.
+TODO - реализовать возможность вызова приложения через интент-фильтры, как приложение для аутентификации.
+TODO -
+
+
+ */
+
 public class SMSNotification extends BroadcastReceiver {
     //private static final String AUTH_STR = "infonum.ru/smsauth";
     //private static final String SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
